@@ -1,4 +1,5 @@
 const e = require('express');
+require('dotenv').config()
 const { response, json } = require('express');
 var express = require('express');
 const session = require('express-session');
@@ -10,7 +11,7 @@ const categoryHelper = require('../helpers/categoryHelper');
 const productsHelper = require('../helpers/productsHelper');
 const userHelper = require('../helpers/userHelper');
 var upload = require('../middleware/multer')
-var client = require("twilio")(twilio.accountSID, twilio.authToken)
+var client = require("twilio")(process.env.accountSID,process.env.authToken)
 function islogged(req, res, next) {
     if (req.session.user) {
         next()
@@ -77,7 +78,7 @@ router.post('/login/mobile', (req, res) => {
             req.session.mobile = req.body.mobile
             client
                 .verify
-                .services(twilio.serviceID)
+                .services(process.env.serviceID)
                 .verifications
                 .create({
                     to: `+91${req.body.mobile}`,
@@ -109,7 +110,7 @@ router.route('/login/verify')
         var otp = arr.toString().replaceAll(',', '');
         client
             .verify
-            .services(twilio.serviceID)
+            .services(process.env.serviceID)
             .verificationChecks
             .create({
                 to: `+91${req.session.mobile}`,

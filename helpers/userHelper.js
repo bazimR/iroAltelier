@@ -1,4 +1,5 @@
 var db = require("../config/connection")
+require('dotenv').config()
 var collections = require("../config/collections")
 var bcrypt = require('bcrypt')
 const { response } = require("express")
@@ -8,16 +9,16 @@ const Razorpay = require('razorpay');
 const { ObjectId, ObjectID } = require("mongodb")
 const referralCodes = require("referral-codes")
 var instance = new Razorpay({
-    key_id: 'rzp_test_eIfX6knZD86Nlx',
-    key_secret: 'oQKsrgLCJkfAjbzwU8NSFEsl',
+    key_id: process.env.key_id,
+    key_secret: process.env.key_secret,
 });
 var paypal = require('paypal-rest-sdk');
 const { log } = require("console")
 const { resolve } = require("path")
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id': "AaH8DKaV5jZywXTK2en0Lj7DK94DT28CYEpZ7gVrrSeAUjigjLjggVRib5bOZ8Qcqe7wNx1QFJum9-Bb",
-    'client_secret': 'EC8Ush4EpRxiOF-fFzmQjGBgfFVA3HSaAu9UaDjgHj3Z0F6RTn2JkIuvd8DWc2Sj6O4vJXueln273IeS'
+    'client_id':process.env.client_id,
+    'client_secret': process.env.client_secret
 });
 module.exports = {
     doSignup: (userData) => {
