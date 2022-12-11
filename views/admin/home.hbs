@@ -1,0 +1,78 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+<section class="main" id="main">
+    <div class="row">
+        <div class="col-xl-3 col-lg-6" id="totaluser">
+            <div class="card1 l-bg-cherry">
+                <div class="card1-statistic-3 p-4">
+                    <h5 class="card1-title mb-0"> <i class="bi bi-people"></i> Total Users</h5>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8 mt-3">
+                            <h2 class="d-flex align-items-center ">
+                                <span id="value1">0</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6" id="totalamount">
+            <div class="card2 l-bg-cherry2">
+                <div class="card2-statistic-3 p-4">
+                    <h5 class="card2-title mb-0"> <i class="bi bi-currency-rupee"></i> Money Spent</h5>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8 mt-3">
+                            <h2 class="d-flex align-items-center ">
+                                <span id="value2">0</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6" id="totalproduct">
+            <div class="card1 l-bg-cherry3">
+                <div class="card1-statistic-3 p-4">
+                    <h5 class="card1-title mb-0"><i class="bi bi-boxes"></i> Total Orders</h5>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8 mt-3">
+                            <h2 class="d-flex align-items-center ">
+                                <span id="value3">0</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6" id="thismonth">
+            <div class="card1 l-bg-cherry4">
+                <div class="card1-statistic-3 p-4">
+                    <h5 class="card1-title mb-0"> <i class="bi bi-box"></i> This Month's Order</h5>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8 mt-3">
+                            <h2 class="d-flex align-items-center ">
+                                <span id="value4">0</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 ">
+                <canvas id="paymentChart"></canvas>
+            </div>
+            <div class="col-lg-6 ">
+                <canvas class="mt-4" id="amountChart"
+                    style="display: block; box-sizing: border-box; height: 100%; width: 100%;"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+{{>adminDown}}
+<script src="/admin/charts/chart-ajx.js">
+</script>
+<script src="/admin/assets/js/main.js"></script>

@@ -1,0 +1,50 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Orders</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                <li class="breadcrumb-item active">Orders</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orders}}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{this._id}}</td>
+                    <td>{{this.userId}}</td>
+                    <td>{{this.deliveryDetails.email}}</td>
+                    <th scope="row">{{this.deliveryDetails.mobile}}</th>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>{{this.status}}</td>
+                    <th>{{this.orderDate}}</th>
+                    <td><a class="btn btn-primary" href="/admin/get-order/{{this._id}}">Order Preview </button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</main>
+{{>adminDown}}
+<script src="/admin/assets/js/main.js"></script>

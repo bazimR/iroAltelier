@@ -1,0 +1,74 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Orders</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                <li class="breadcrumb-item active">Orders</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Date/Time</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Requests</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orderData}}
+                <tr>
+                    <td>#</td>
+                    <td>{{this.products.name}}</td>
+                    <td><img style="width: 56px;height: auto;" src="/product-img/{{this.products.imageFilename.[0]}}" alt=""></td>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>{{this.products.offerprice}}</td>
+                    <td>{{../total}}</td>
+                    <td>{{this.orderDate}}<br>{{this.orderTime}}</td>
+                    <td>
+                        <div class="card" style="width: 18rem;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{this.deliveryDetails.email}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.mobile}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.address}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.pincode}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.city}}</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="text-primary text-center">{{this.status}}</td>
+                    <td>{{#if this.cancelrequest}}<span class="text-danger">Cancellation
+                            Requested</span>{{else}}none{{/if}}</td>
+                    <td><button onclick="cancel('{{this._id}}','{{this.user._id}}','{{this.product}}')"
+                            class="m-1 btn btn-block btn-outline-danger">Cancel</button><br>
+                        <button onclick="dispatch('{{this._id}}','{{this.user._id}}','{{this.product}}')"
+                            class="m-1 btn btn-block btn-outline-warning">Dispatched</button><br>
+                        <button onclick="delivered('{{this._id}}','{{this.user._id}}','{{this.product}}')"
+                            class="m-1 btn btn-block btn-outline-success">Delivered</button><br>
+                        <button onclick="delayed('{{this._id}}','{{this.user._id}}','{{this.product}}')"
+                            class="m-1 btn btn-block btn-outline-info">Delayed</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</main>
+{{>adminDown}}
+<script src="/admin/assets/js/main.js"></script>

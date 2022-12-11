@@ -1,0 +1,33 @@
+{{>userNavbar}}
+<div class="container">
+    <div class="row">
+        {{#each products}}
+        <div class="col-lg-12 col-sm-6" id="wish">
+            <div class="card mt-2 justify-content-start"
+                style="border-color: rgb(211, 189, 255);border-width: 2px;">
+                <div class="p-3 d-flex">
+                    <div>
+                        <img class="rounded" style="width: 100px;" src="/product-img/{{this.product.imageFilename.[0]}}"
+                            alt="Card image cap">
+                    </div>
+                    <div class="m-3">
+                        <span><a href="" class="fs-22 text-dark"
+                                onclick="proDetes('{{this.product._id}}')">{{this.product.name}}</a></span><br>
+                        <span class="fs-16 text-secondary">{{this.product.description}}</span>
+                    </div>
+                    <div class="m-3 ml-auto align-self-center">
+                        <button class="btn btn-lg text-white" onclick="addToCart('{{this.product._id}}')"
+                            style="background-color:#717fe0;font-weight: bolder;border-width: 2px;">ADD TO CART</button>
+                    </div>
+                    <div class="m-3 align-self-center">
+                        <button class="btn btn-lg btn-outline-danger" style="border-width: 2px;font-weight: bolder;"
+                            onclick="removeWish('{{this._id}}','{{this.product._id}}')">REMOVE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{userFooter}}
+<script src="/users/javascripts/wishlist.js"></script>

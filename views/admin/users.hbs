@@ -1,0 +1,58 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Users</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                <li class="breadcrumb-item active">Users</li>
+            </ol>
+        </nav>
+    </div>
+    <table class="table align-middle mb-0 bg-white" id="table_id">
+        <thead class="bg-light">
+            <tr>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each user}}
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                            style="width: 45px; height: 45px" class="rounded-circle" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">{{this.name}}</p>
+                            <p class="text-muted mb-0">{{this.email}}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    {{this.mobile}}
+                </td>
+                <td>
+                    {{#if this.isBlocked}}
+                    <span class="badge badge-danger rounded-pill d-inline">Blocked</span>
+                    {{else}}
+                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                    {{/if}}
+                </td>
+                <td>{{#if this.isBlocked}}
+                    <a class="btn btn-outline-success btn-block" href="/admin/unblock/{{this._id}}">Unblock</a>
+                    {{else}}
+                    <a class="btn btn-outline-danger btn-block " href="/admin/block/{{this._id}}">Block</a>
+                    {{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</main>
+{{>adminDown}}
+<script src="/admin/assets/js/main.js"></script>

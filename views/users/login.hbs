@@ -1,0 +1,74 @@
+{{>userNavbar}}
+<div class="container-fluid h-100" style="background-color:#d9d9d9cd !important;">
+    <div class="row">
+        <div class="col-lg-6 mt-5 p-5">
+            <div class="col-lg-8 float-right">
+                <div>
+                    <h1 class="hX fs-14" style="color: #000000;margin-bottom: 2rem;font-weight:bold">RETURNING CUSTOMERS
+                    </h1>
+                </div>
+                <div class="text-center " style="margin: 2rem;">{{#if errMessage}}
+                    <span class="text-center hX "
+                        style="color: #dd1616;margin-bottom: 3rem;">{{errMessage}}</span>{{else}}{{/if}}
+                </div>
+                <div class="text-center " style="margin: 2rem;">{{#if errBlocked}}
+                    <span class="text-center hX "
+                        style="color: #dd1616;margin-bottom: 3rem;">{{errBlocked}}</span>{{else}}{{/if}}
+                </div>
+                <form action="/login" method="post">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example1">Email address*</label>
+                        <input value="bazim@b" type="email" id="form2Example1" class="form-control" name="email" />
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example2">Password*</label>
+                        <input value="123" type="password" id="form2Example2" class="form-control" name="password" />
+                    </div>
+
+                    <!-- 2 column grid layout for inline styling -->
+                    <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                            <!-- Checkbox -->
+                        </div>
+
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" style="background-color: #717fe0;" class="btn btn-block mb-4 text-white">
+                        <span class="fs-20" style="font-weight: bolder;">SIGN IN</span> </button>
+
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>Not a member? <a href="/signup">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="vertical"></div>
+        <div class="col-lg-6 mt-5 p-5">
+            <div class="col-lg-8 float-left" style="margin-top:6.48em ;">
+                <h1 class="hX fs-14" style="color: #484848;margin-bottom: 2rem;font-weight:bold">FOR MOBILE VALIDATION
+                </h1>
+                <div class="text-center " style="margin: 2rem;">{{#if errMobile}}
+                    <span class=" hX "
+                        style="color: #dd1616;margin-bottom: 3rem;">{{errMobile}}</span>{{else}}{{/if}}
+                </div>
+                <form action="/login/mobile/" method="post">
+                    <!-- Mobile input -->
+                    <div class="form-outline mb-4 mt-5">
+                        <label class="form-label" for="form2Example1">Mobile*</label>
+                        <input type="text" id="form2Example1" class="form-control" name="mobile" />
+                    </div>
+                    <!-- Submit button -->
+                    <div class="mt-4 pad"><button style="background-color: #717fe0;"
+                            class="btn btn-block mb-4 text-white" type="submit"><span class="fs-20"
+                                style="font-weight: bolder;">SUBMINT</span> </button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{>userFooter}}

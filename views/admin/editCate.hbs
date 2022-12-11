@@ -1,0 +1,23 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+<main id="main" class="main">
+    <div class="container p-5 ">
+        <div>
+            <h1 class="display-4 text-center hX text-primary " style="margin-bottom: 3rem;">EDIT CATEGORY</h1>
+        </div>
+        <form action="/admin/category/edit/{{category._id}}" method="post">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input name="name" type="text" required id="form5Example2" class="form-control"
+                    value="{{category.name}}" />
+            </div>
+            <div class="form-outline mb-4">
+                <input name="offer" type="text" id="form5Example2" class="form-control" value="{{category.offer}}" />
+            </div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">SUBMIT</button>
+        </form>
+    </div>
+</main>
+{{>adminDown}}

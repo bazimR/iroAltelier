@@ -1,0 +1,47 @@
+{{>userNavbar}}
+<div class="wrap-table-shopping-cart">
+    <table class="table table-serial">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Order Id</th>
+                <th scope="col">Shipping To</th>
+                <th scope="col">Order date</th>
+                <th scope="col">Payment Method</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+                <th scope="col">Order Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <td scope="col"></td>
+                <td scope="col">{{this._id}}</td>
+                <td>
+                    <div style="width:auto ;height: 60px;
+                    overflow-y:scroll;">
+                        <div class="card" style="width: 18rem;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{this.deliveryDetails.email}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.mobile}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.address}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.pincode}}</li>
+                                <li class="list-group-item">{{this.deliveryDetails.city}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+
+                <td scope="col">{{this.orderDate}} <br>{{this.orderTime}} </td>
+                <td scope="col">{{this.paymentMethod}}</td>
+                <td scope="col" class="text-info">{{this.total}} Rs</td>
+                <td scope="col">Order {{this.status}}</td>
+
+                <td scope="col" class=""><a class=" btn btn-primary" href="/orders/{{this._id}}">Order Details</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{>userFooter}}

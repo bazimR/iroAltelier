@@ -1,0 +1,41 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Banners</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                <li class="breadcrumb-item active">Banners</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="m-3"><a href="/admin/banner/add" class="btn offset-10"
+            style="background-color:rgb(255, 153, 0) !important;color: white;">ADD BANNER</a></div>
+    <table class="css-serial table table-warning table-striped" style="color:rgb(255, 85, 0) !important;" id="table_id">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Message</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>{{#each banner}}
+            <tr>
+                <td></td>
+                <td>{{this.name}}</td>
+                <td><img src="/product-img/{{this.imageFilename.[0]}}" alt="" style="width: 4em;"></td>
+                <td>{{this.title}}</td>
+                <td>{{this.message}}</td>
+                <td></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</main>
+{{>adminDown}}
+<script src="/admin/assets/js/main.js"></script>

@@ -1,0 +1,53 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+<main id="main" class="main">
+    <div class="container p-5 col-lg-8">
+        <div>
+            <h1 class="display-4 text-center hX text-primary " style="margin-bottom: 3rem;">ADD COUPON</h1>
+        </div>
+        <form action="/admin/coupon/add" method="post">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 label">Name</div>
+                    <div class="col-lg-9 col-md-8"> <input name="name" type="text" required id="form5Example2"
+                            class="form-control" /></div>
+                </div>
+            </div>
+            <div class="form-outline mb-4">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 label">Expiry Date</div>
+                    <div class="col-lg-9 col-md-8"> <input name="expirydate" type="date" required id="form5Example2"
+                            class="form-control" /></div>
+                </div>
+            </div>
+            <div class="form-outline mb-4">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 label">MIN-Amount</div>
+                    <div class="col-lg-9 col-md-8"> <input name="minamount" type="text" required id="form5Example2"
+                            class="form-control" /></div>
+                </div>
+            </div>
+            <div class="form-outline mb-4">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 label">MAX-Amount</div>
+                    <div class="col-lg-9 col-md-8"><input name="maxamount" type="text" required id="form5Example2"
+                            class="form-control" /></div>
+                </div>
+            </div>
+            <div class="form-outline mb-4">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 label">Percentage</div>
+                    <div class="col-lg-9 col-md-8"><input name="percentage" type="text" required id="form5Example2"
+                            class="form-control" /></div>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">ADD</button>
+        </form>
+    </div>
+</main>
+{{>adminDown}}
+<script src="/admin/assets/js/main.js"></script>

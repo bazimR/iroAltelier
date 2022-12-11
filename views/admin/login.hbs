@@ -1,0 +1,30 @@
+<div class="container " >
+    <div>
+        <h1 class="display-4 text-center text-primary p-5 mb-3">ADMIN LOGIN</h1>
+    </div>
+    <div class="container col-lg-6">
+        <form action="/admin/login" method="post">
+            <div class="text-center " style="margin: 2rem;">{{#if errMessage}}
+                <span class="text-center hX "
+                    style="color: #dd1616;margin-bottom: 3rem;">{{errMessage}}</span>{{else}}{{/if}}
+            </div>
+            <!-- Email input -->
+            <div class="form-outline-success mb-4">
+                <input value="admin" type="text" id="form2Example1" name="name" class="form-control text-center"
+                    required placeholder="Email" />
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline-success mb-4">
+                <input value="123" type="password" id="form2Example2" name="password" class="form-control text-center"
+                    required placeholder="Password" />
+            </div>
+            <!-- Submit button -->
+            <div class="">
+                <button type="submit" class="btn-width btn btn-primary btn-block"> <span class="text-white">LOGIN</span>
+                </button>
+            </div>
+            <!-- Register buttons -->
+        </form>
+    </div>
+</div>

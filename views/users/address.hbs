@@ -1,0 +1,200 @@
+{{>userNavbar}}
+
+
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="mydiv3">
+                <p class="pt-2">
+                    <button
+                        class=" mb-3 flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer mt-5"
+                        type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Create a new Address </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="mb-5">
+                        <h4 class="mtext-109 cl2 p-b-30">
+                            Add Address
+                        </h4>
+                        <form action="" id="addAddress">
+                            <!-- Email input required -->
+                            <input required type="text" value="{{user._id}}" hidden name="userId" />
+                            <div class="form-outline mb-4">
+                                <input required type="email" id="form7Example5" class="form-control" name="email" />
+                                <label class="form-label pt-1" for="form7Example5">Email</label>
+                            </div>
+                            <!-- Number input required -->
+                            <div class="form-outline mb-4">
+                                <input required type="number" id="form7Example6" class="form-control" name="phone" />
+                                <label class="form-label pt-1" for="form7Example6">Phone</label>
+                            </div>
+                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                            <!-- Text input required -->
+                            <div class="form-outline mb-4">
+                                <input required type="text" id="form7Example4" class="form-control" name="address" />
+                                <label class="form-label pt-1" for="form7Example4">Address</label>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input required type="number" id="form7Example1" class="form-control"
+                                            name="pincode" />
+                                        <label class="form-label pt-1" for="form7Example1">Pincode</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input required type="text" id="form7Example2" class="form-control"
+                                            name="city" />
+                                        <label class="form-label pt-1 " for="form7Example2">City</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                SUBMIT
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <h5 class="text-dark" style="margin-left: 5px;">Select an Address</h5>
+                <div style="width:auto ;height: 20em;overflow-x: scroll;">
+                    <form action="" id="payment-form">
+                        {{#each userAddress}}
+                        <div class="card col-md-12 ml-1 mt-3 shadow-sm bg-white rounded">
+                            <div class="">
+                                <p class="card-text pt-3" id="FirstName{{this.address._id}}">
+                                    Email :
+                                    {{this.address.email}}
+                                    <br />
+                                    Mobile No :
+                                    {{this.address.phone}}
+                                </p>
+                                <p class="card-text" id="Address{{this._id}}">
+                                    Address :{{this.address.address}}<br>
+                                    Pincode :{{this.address.pincode}}
+                                </p>
+                                <p class="card-text" id="Address{{this._id}}">
+                                    City :{{this.address.city}}
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <input required type="radio" class="mb-4 mr-3" name="address"
+                                    value="{{this.address._id}}" />
+                                <label>Use this</label>
+                            </div>
+                        </div>
+                        {{/each}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container mt-5 ml-5 checkout">
+                    <h4 class="d-flex justify-content-center text-dark font-weight-bold">Total Amount :₹{{total}}.00
+                    </h4>
+                    <hr />
+                    <div class="payment">
+                        <p class="d-flex justify-content-center text-dark font-weight-bold">Payment Method</p>
+                        <hr />
+                        <label class="radio-inline mt-2 text-dark font-weight-bold">
+                            <input type="radio" name="payment" value="COD" />COD</label>
+                        <hr />
+                        <label class="radio-inline mt-2 text-dark font-weight-bold">
+                            <input type="radio" name="payment" value="RAZORPAY" />Razorpay</label>
+                        <hr />
+                        <label class="radio-inline mt-2 text-dark font-weight-bold">
+                            <input type="radio" name="payment" value="PAYPAL" />Paypal</label>
+                        <hr />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg bor14 btn-block mt-3">
+                        CONTINUE
+                    </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</section>
+
+
+
+
+<!-- Shoping Cart -->
+{{!-- <div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+            {{#each userAddress}}
+            <div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.address.email}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.address.phone}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.address}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.pincode}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.city}}</h6>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+            <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+                <h4 class="mtext-109 cl2 p-b-30">
+                    Add Address
+                </h4>
+                <div>
+                    <form action="" id="addAddress">
+                        <!-- Email input required -->
+                        <input required type="text" value="{{user._id}}" hidden name="userId" />
+                        <div class="form-outline mb-4">
+                            <input required type="email" id="form7Example5" class="form-control" name="email" />
+                            <label class="form-label pt-1" for="form7Example5">Email</label>
+                        </div>
+
+                        <!-- Number input required -->
+                        <div class="form-outline mb-4">
+                            <input required type="number" id="form7Example6" class="form-control" name="phone" />
+                            <label class="form-label pt-1" for="form7Example6">Phone</label>
+                        </div>
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <!-- Text input required -->
+                        <div class="form-outline mb-4">
+                            <input required type="text" id="form7Example4" class="form-control" name="address" />
+                            <label class="form-label pt-1" for="form7Example4">Address</label>
+                        </div>
+
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input required type="number" id="form7Example1" class="form-control"
+                                        name="pincode" />
+                                    <label class="form-label pt-1" for="form7Example1">Pincode</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input required type="text" id="form7Example2" class="form-control" name="city" />
+                                    <label class="form-label pt-1 " for="form7Example2">City</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                            SUBMIT
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> --}}
+<script src="/users/ajax/checkout.js">
+</script>
+<script src="/users/javascripts/ajax.js">
+</script>
+{{>userFooter}}

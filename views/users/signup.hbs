@@ -1,0 +1,72 @@
+{{>userNavbar}}
+<div class="container">
+    <div>
+        <h1 class="display-4 text-center hX " style="color: #717fe0;margin-bottom: -3rem;font-weight: bolder;">SIGN UP
+        </h1>
+    </div>
+    <div class="row">
+        <div class="container p-5 col-lg-6 ">
+            <div class="container p-5">
+                <form action="/signup" method="post">
+                    <div class="text-center " style="margin: 2rem;">{{#if errMobileExists}}
+                        <span class="text-center hX "
+                            style="color: #dd1616;margin-bottom: 3rem;">{{errMobileExists}}</span>{{else}}{{/if}}
+                    </div>
+                    <div class="text-center " style="margin: 2rem;">{{#if errEmailExists}}
+                        <span class="text-center hX "
+                            style="color: #dd1616;margin-bottom: 3rem;">{{errEmailExists}}</span>{{else}}{{/if}}
+                    </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4 ">
+                        <input name="name" type="text" id="form2Example1" class="form-control" required />
+                        <label class="form-label" for="form2Example1">Name</label>
+                    </div>
+                    <div class="form-outline mb-4 ">
+                        <input name="email" type="email" id="form2Example1" class="form-control" required />
+                        <label class="form-label" for="form2Example1">Email address</label>
+                    </div>
+                    <div class="form-outline mb-4 ">
+                        <input name="mobile" type="text" id="form2Example1" class="form-control" />
+                        <label class="form-label" for="form2Example1">Mobile</label>
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4 ">
+                        <input name="password" type="password" id="form2Example2" class="form-control" required />
+                        <label class="form-label" for="form2Example2">Password</label>
+                    </div>
+                    <div class="form-outline mb-4 ">
+                        <input type="password" id="form2Example2" class="form-control" required />
+                        <label class="form-label" for="form2Example2">Confirm Password</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <div class="accordion  bg-white" id="accordionExample">
+                            <div class="card bg-white">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn text-primary" type="button" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Do you have a referral code?
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <input name="referralcode" type="text" id="form2Example1" class="form-control" />
+                                        <label class="form-label" for="form2Example1">Enter referral code </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 2 column grid layout for inline styling -->
+                    <!-- Submit button -->
+                    <button type="submit" style="background-color: #717fe0;color: white;font-weight: bold;"
+                        class="btn btn-lg btn-block fs-24 ">Submit</button>
+                </form>
+            </div>
+        </div>
+        {{!-- <div class="vertical"></div> --}}
+    </div>
+</div>
+{{>userFooter}}

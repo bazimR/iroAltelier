@@ -1,0 +1,179 @@
+<!-- Header -->
+<header class="header-v2">
+    <!-- Header desktop -->
+    <div class="container-menu-desktop trans-03">
+        <div class="wrap-menu-desktop">
+            <nav class="limiter-menu-desktop p-l-45">
+
+                <!-- Logo desktop -->
+                <a href="/" class="logo">
+                    <img id="footer"src="/users/images/icons/logo-01.svg" alt="IMG-LOGO">
+                </a>
+
+                <!-- Menu desktop -->
+                <div class="menu-desktop">
+                    <ul class="main-menu">
+                        <li class="">
+                            <a href="/">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="/men">Men</a>
+                        </li>
+                        <li>
+                            <a href="/women">Women</a>
+                        </li>
+                        <li>
+                            <a href="/accessories">Accessories</a>
+                        </li>
+                        {{!--
+                        <li class="label1" data-label1="hot">
+                            <a href="shoping-cart.html">Features</a>
+                        </li> --}}
+
+                        {{!-- <li>
+                            <a href="blog.html">Blog</a>
+                        </li> --}}
+
+                        {{!-- <li>
+                            <a href="about.html">About</a>
+                        </li> --}}
+
+                        {{!-- <li>
+                            <a href="contact.html">Contact</a>
+                        </li> --}}
+                    </ul>
+                </div>
+
+                <!-- Icon header -->
+                <div class="wrap-icon-header flex-w flex-r-m h-full mr-5">
+
+                    <div class="flex-c-m h-full p-l-18 p-r-25 ">
+                        <div>
+                            <a href="/wishlist"
+                                class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11  js-show-cart "
+                                ><i class="zmdi zmdi-favorite-outline"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="flex-c-m h-full p-l-18 p-r-25 ">
+                        <div>
+                            <a href="/cart"
+                                class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-cart "
+                                > <i class="zmdi zmdi-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="flex-c-m h-full p-l-18 p-r-25 ">
+                        <a href="/orders-preview" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-cart">
+                            <i class="zmdi zmdi-collection-text"></i>
+                        </a>
+                    </div>
+                    <div class="flex-c-m h-full p-lr-19 ">
+                        <div>
+                            <div class="dropdown">
+                                {{#if loginStatus}}
+                                <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiX js-show-sidebar"
+                                    href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                                {{else}}
+                                <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiY js-show-sidebar"
+                                    href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                                {{/if}}
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {{#if loginStatus}}
+                                    <div><a class="dropdown-item text-dark" href="/profile">View Profile</a>
+                                    </div>
+                                    <div><a class="dropdown-item text-dark" href="/logout">Logout</a>
+                                    </div>
+                                    {{else}}
+                                    <div><a class="dropdown-item text-dark" href="/login">Login</a>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Header Mobile -->
+    <div class="wrap-header-mobile">
+        <!-- Logo moblie -->
+        <div class="logo-mobile">
+            <a href="/"><img src="/users/images/icons/logo-01.svg" alt="IMG-LOGO"></a>
+        </div>
+
+        <!-- Icon header -->
+
+        <div class="flex-c-m h-full p-lr-19 ">
+            <div>
+                <div class="dropdown">
+                    {{#if loginStatus}}
+                    <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiX js-show-sidebar"
+                        href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                    {{else}}
+                    <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiY js-show-sidebar"
+                        href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                    {{/if}}
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {{#if loginStatus}}
+                        <div><a class="dropdown-item text-dark" href="/logout">Logout</a>
+                        </div>
+                        {{else}}
+                        <div><a class="dropdown-item text-dark" href="/login">Login</a>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Button show menu profile-->
+        {{!-- <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </div> --}}
+    </div>
+
+
+    <!-- Menu Mobile -->
+    <div class="menu-mobile">
+        <ul class="main-menu-m">
+            <li>
+                <a href="/">Home</a>
+                <span class="arrow-main-menu-m">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </span>
+            </li>
+
+            <li>
+                <a href="product.html">Shop</a>
+            </li>
+
+            {{!-- <li>
+                <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+            </li>
+
+            <li>
+                <a href="blog.html">Blog</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact</a>
+            </li> --}}
+        </ul>
+    </div>
+    <script src="/users/javascripts/ajax.js"></script>
+</header>

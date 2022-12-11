@@ -1,0 +1,26 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+<main id="main" class="main">
+    <div class="container p-5 col-lg-8">
+        <div>
+            <h1 class="display-4 text-center hX text-primary " style="margin-bottom: 3rem;">ADD CATEGORY</h1>
+        </div>
+        <form action="/admin/category/add" method="post">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input name="name" type="text" required id="form5Example2" class="form-control"
+                    placeholder="Category" />
+            </div>
+            <div class="form-outline mb-4">
+                <input name="offer" type="text" id="form5Example2" class="form-control"
+                    value="0" />
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">ADD</button>
+        </form>
+    </div>
+</main>
+{{>adminDown}}
+<script src="/admin/assets/js/main.js"></script>

@@ -1,0 +1,44 @@
+{{>userNavbar}}
+<div class="wrap-table-shopping-cart">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Item</th>
+                <th scope="col">Payment</th>
+                <th scope="col">Order date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Order Status</th>
+                <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <td scope="col">#</td>
+                <td scope="col">{{this.products.name}}</td>
+                <td scope="col" id="price1{{this.products._id}}">{{this.products.offerprice}}</td>
+                <td scope="col">
+                    <div><img src="/product-img/{{this.products.imageFilename.[0]}}" style="width: 56px;height: auto;" alt="">
+                    </div>
+                </td>
+                <td scope="col" id="payment1">{{this.paymentMethod}}</td>
+                <td scope="col">{{this.orderDate}}</td>
+                <td scope="col">Order {{this.status}}</td>
+                <td scope="col" class="text-info">{{#if this.orderstatus}}
+                    {{this.orderstatus}}{{else}} Will update shortly {{/if}}
+                </td>
+                <td scope="col">{{this.quantity}}</td>
+                <td scope="col">{{#if this.cancelrequest}}
+                    <span class="text-info">Cancellation-request sent</span>
+                    {{else}}<button onclick="requestCancel('{{this._id}}','{{this.userId}}','{{this.products._id}}')"
+                        class="btn btn-block btn-outline-danger"> Request Cancellation</button>{{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{>userFooter}}

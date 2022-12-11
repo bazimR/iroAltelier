@@ -1,0 +1,53 @@
+{{>adminHeader}}
+{{>adminSide}}
+{{>adminNavbar}}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Products</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                <li class="breadcrumb-item active">Products</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="m-3"><a href="/admin/products/add" class="btn btn-success offset-10">ADD PRODUCT</a></div>
+    <table class="css-serial table table-success" style="color:rgb(0, 60, 0) !important;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Offer price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>{{#each products}}
+            <tr>
+                <td></td>
+                <td>{{this.name}}</td>
+                <td>{{this.category}}</td>
+                <td>
+                    <div class="div1">{{this.description}}</div>
+                </td>
+                <td>{{this.quantity}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.offerprice}}</td>
+                <td><img class="img" src="/product-img/{{this.imageFilename.[0]}}" alt=""></td>
+                <td><a href="/admin/products/edit/{{this._id}}"><i class="bi bi-pencil-square text-success"
+                            style="font-size: x-large;"></i></a>
+                    <a onclick="return confirm('Are you sure you want to delete {{this.name}}')"
+                        href="/admin/products/delete/{{this._id}}"><i class="bi bi-trash text-danger"
+                            style="font-size: x-large;"></i></a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</main>
+{{>adminDown}}
+<script src="/admin/assets/js/main.js"></script>
