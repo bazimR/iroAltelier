@@ -11,7 +11,15 @@ const categoryHelper = require('../helpers/categoryHelper');
 const productsHelper = require('../helpers/productsHelper');
 const userHelper = require('../helpers/userHelper');
 var upload = require('../middleware/multer')
-var client = require("twilio")(process.env.accountSID,process.env.authToken)
+var client = require("twilio")(process.env.accountSID, process.env.authToken)
+function inOrder(req, res, next) {
+    if (req.session.inOrder) {
+        next()
+    }
+    else {
+        res.redirect('/')
+    }
+}
 function islogged(req, res, next) {
     if (req.session.user) {
         next()
@@ -199,7 +207,6 @@ router.route("/cart")
                 let total = await cartHelper.getTotalOfProduct(req.session.user._id)
                 res.render('users/cart', { loginStatus: req.session.loggedIn, loggedIn: req.session.loggedIn, cart, total })
             }
-
         }
         else {
             res.render('users/cart')
@@ -224,7 +231,7 @@ router.route("/address")
     .get(islogged, async (req, res) => {
         let cart = req.session.cart
         if (req.session.user) {
-            if (cart.length === 0) {
+            if (cart.length == 0) {
                 res.redirect('/')
             }
             else {
@@ -249,19 +256,19 @@ router.route("/addAddress")
         userHelper.addAddress(req.body, req.session.user._id).then((response) => {
             res.json({ addAddress: true })
         })
-
     })
 router.route("/place-order")
     .post(async (req, res) => {
         let orderItem = await userHelper.getOrderedItems(req.session.user._id)
         let selectedAddress = await userHelper.getSelectedAddress(req.body.address, req.session.user._id)
+        req.session.inOrder = true
         if (req.session.ctotal) {
             let total = req.session.ctotal
             userHelper.placeOrder(selectedAddress, orderItem, total, req.session.user._id, req.body.payment, req.session.cId).then((order) => {
-                console.log("<><>}{", order);
                 req.session.orderId = order.insertedId
                 req.session.total = total ///watchout pleeeeeeeeeeeeeeeeeeeease
                 console.log(req.session.total, "]}}}}}}}");
+                console.log(req.body);
                 if (req.body['payment'] == 'COD') {
                     res.json({ COD: true })
                 }
@@ -346,8 +353,10 @@ router.route('/request-cancel')
         }
     })
 router.route('/thank-you')
-    .get(islogged, (req, res) => {
-        res.render('users/thankyou', { loginStatus: req.session.loggedIn })
+    .get(inOrder, islogged, (req, res) => {
+        userHelper.emptyCart(req.session.user._id).then(() => {
+            res.render('users/thankyou', { loginStatus: req.session.loggedIn })
+        })
     })
 router.route("/verify-payment")
     .post((req, res) => {
@@ -381,7 +390,7 @@ router.route('/success')
 router.route('/profile')
     .get(islogged, (req, res) => {
         if (req.session.user) {
-            userHelper.getWlletHistory(req.session.user._id).then((user) => {
+            userHelper.getWalletHistory(req.session.user._id).then((user) => {
                 res.render('users/profile', { loginStatus: req.session.loggedIn, user })
             })
         }
@@ -449,4 +458,5 @@ router.route('/accessories')
             res.render('users/access', { loginStatus: req.session.loggedIn, products })
         })
     })
+
 module.exports = router;

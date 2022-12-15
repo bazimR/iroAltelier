@@ -267,7 +267,6 @@ module.exports = {
             ]).toArray()
             console.log(">>>>" + items);
             resolve(items)
-
         })
     },
     getSelectedAddress: (addressId, userId) => {
@@ -325,7 +324,6 @@ module.exports = {
                         coupons: coupon
                     }
                 })
-                db.get().collection(collections.CARTS_COLLECTION).deleteOne({ user: objectId(userId) })
                 resolve(response)
             })
         })
@@ -479,7 +477,7 @@ module.exports = {
             };
             instance.orders.create(options, function (err, order) {
                 if (err) {
-                    console.log(err);
+                    console.log("this is error",err);
                 }
                 else {
                     // console.log("paypal", order);
@@ -491,7 +489,7 @@ module.exports = {
     verifyRazor: (details) => {
         return new Promise((resolve, reject) => {
             const crypto = require("crypto")
-            let hmac = crypto.createHmac('sha256', 'oQKsrgLCJkfAjbzwU8NSFEsl')
+            let hmac = crypto.createHmac('sha256', process.env.key_secret)
                 .update(details["payment[razorpay_order_id]"] +
                     "|" +
                     details["payment[razorpay_payment_id]"])
@@ -712,19 +710,19 @@ module.exports = {
     },
     productMen: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{category: "MEN"  }, { isAvailable: true }] }).toArray()
+            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{ category: "MEN" }, { isAvailable: true }] }).toArray()
             resolve(products)
         })
     },
     productWomen: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{category: "WOMEN"  }, { isAvailable: true }] }).toArray()
+            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{ category: "WOMEN" }, { isAvailable: true }] }).toArray()
             resolve(products)
         })
     },
     productAccess: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{category: "ACCESSORIES"  }, { isAvailable: true }] }).toArray()
+            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{ category: "ACCESSORIES" }, { isAvailable: true }] }).toArray()
             resolve(products)
         })
     },
@@ -751,10 +749,16 @@ module.exports = {
                 })
         })
     },
-    getWlletHistory: (userId) => {
+    getWalletHistory: (userId) => {
         return new Promise(async (resolve, reject) => {
             let user = await db.get().collection(collections.USERS_COLLECTIONS).findOne({ _id: objectId(userId) })
             resolve(user)
+        })
+    },
+    emptyCart: (userId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.CARTS_COLLECTION).deleteOne({ user: objectId(userId) })
+            resolve()
         })
     }
 }

@@ -1,29 +1,29 @@
-// const { razorPayGenerate } = require("../../../helpers/userHelper")
-
-// const { response } = require("express")
 
 $("#payment-form").submit((e) => {
+    alert("kk")
     e.preventDefault()
     $.ajax({
         url: '/place-order',
         method: 'post',
         data: $('#payment-form').serialize(),
         success: (response) => {
+            alert("jojo")
             if (response.COD) {
+                alert("jj")
                 location.href = '/thank-you'
             }
             else if (response.RAZORPAY) {
                 razorPayPayment(response)
             }
-            else{
-                location.href=response.href
+            else {
+                location.href = response.href
             }
         }
     })
 })
 function razorPayPayment(order) {
     var options = {
-        "key": "rzp_test_eIfX6knZD86Nlx", // Enter the Key ID generated from the Dashboard
+        "key": 'rzp_test_l39HCRVxVJH4hM', // Enter the Key ID generated from the Dashboard
         "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
         "name": "Iro altelier",
@@ -43,7 +43,7 @@ function razorPayPayment(order) {
             "address": "Razorpay Corporate Office"
         },
         "theme": {
-            "color": "#3399cc"
+            "color": "#F8FF8F"
         }
     };
     var rzp1 = new Razorpay(options);
@@ -61,7 +61,7 @@ function verifyPayment(payment, order) {
             if (response.status) {
                 location.href = '/thank-you'
             }
-            else{
+            else {
                 alert("payment failed")
             }
         }
