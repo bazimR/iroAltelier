@@ -17,7 +17,7 @@ const { log } = require("console")
 const { resolve } = require("path")
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id':process.env.client_id,
+    'client_id': process.env.client_id,
     'client_secret': process.env.client_secret
 });
 module.exports = {
@@ -712,19 +712,19 @@ module.exports = {
     },
     productMen: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ category: "MEN" }).toArray()
+            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{category: "MEN"  }, { isAvailable: true }] }).toArray()
             resolve(products)
         })
     },
     productWomen: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ category: "WOMEN" }).toArray()
+            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{category: "WOMEN"  }, { isAvailable: true }] }).toArray()
             resolve(products)
         })
     },
     productAccess: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ category: "ACCESSORIES" }).toArray()
+            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{category: "ACCESSORIES"  }, { isAvailable: true }] }).toArray()
             resolve(products)
         })
     },

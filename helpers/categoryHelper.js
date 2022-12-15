@@ -6,7 +6,7 @@ var objectId = require('mongodb').ObjectId
 module.exports = {
     addCate: (cateDetes) => {
         let name = cateDetes.name.toUpperCase()
-        let offer = praseInt(cateDetes.offer)
+        let offer = parseInt(cateDetes.offer)
         let cateData = {
             name: name,
             offer: offer

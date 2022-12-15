@@ -19,7 +19,6 @@
             <div class="block2">
                 <div class="block2-pic hov-img0"><a href="/products/details?id={{this._id}}">
                         <img src="/product-img/{{this.imageFilename.[0]}}" alt="IMG-PRODUCT"></a>
-
                     {{!-- <button href="/products/details/{{this._id}}"
                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                         Quick View
@@ -39,20 +38,18 @@
                         <span class="stext-105 cl3 text-primary">
                             Offer Price: {{this.offerprice}}
                         </span>
-                    </div>
-
-                    <div class="block2-txt-child2 flex-r p-t-3">
-                        <a onclick="addWish('{{this._id}}')" class="btn-addwish-b2 dis-block pos-relative ">
-                            <img class="icon-heart1 dis-block trans-04" src="/users/images/icons/icon-heart-01.png"
-                                alt="ICON">
-                            <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                src="/users/images/icons/icon-heart-02.png" alt="ICON">
-                        </a>
+                        <span class="badge badge-danger mt-1 mb-1">{{this.category}}</span>
                     </div>
                 </div>
-                <div>
+                <div style="width: 65% !important;float: left;">
                     <button onclick="addToCart('{{this._id}}')" class="btn btn-block btn-outline-success "><span
                             style="font-weight:600;">ADD TO CART</span></button>
+                </div>
+                <div style="float: left;width:30%;">
+                    <button onclick="addWish('{{this._id}}')" class="btn btn-block text-white "
+                        style="background-color:#717fe0;font-weight: bolder;margin-left: 16%;">
+                        wishlist
+                    </button>
                 </div>
             </div>
         </div>
