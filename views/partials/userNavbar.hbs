@@ -7,7 +7,7 @@
 
                 <!-- Logo desktop -->
                 <a href="/" class="logo">
-                    <img id="footer"src="/users/images/icons/logo-01.svg" alt="IMG-LOGO">
+                    <img id="footer" src="/users/images/icons/logo-01.svg" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
@@ -50,17 +50,15 @@
 
                     <div class="flex-c-m h-full p-l-18 p-r-25 ">
                         <div>
-                            <a href="/wishlist"
-                                class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11  js-show-cart "
-                                ><i class="zmdi zmdi-favorite-outline"></i></a>
+                            <a href="/wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11  js-show-cart "><i
+                                    class="zmdi zmdi-favorite-outline"></i></a>
                         </div>
                     </div>
 
                     <div class="flex-c-m h-full p-l-18 p-r-25 ">
                         <div>
-                            <a href="/cart"
-                                class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-cart "
-                                > <i class="zmdi zmdi-shopping-cart"></i></a>
+                            <a href="/cart" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-cart "> <i
+                                    class="zmdi zmdi-shopping-cart"></i></a>
                         </div>
                     </div>
                     <div class="flex-c-m h-full p-l-18 p-r-25 ">
@@ -69,30 +67,27 @@
                         </a>
                     </div>
                     <div class="flex-c-m h-full p-lr-19 ">
-                        <div>
-                            <div class="dropdown">
+                        <div class="dropdown">
+                            {{#if loginStatus}}
+                            <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiX js-show-sidebar"
+                                href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                            {{else}}
+                            <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiY js-show-sidebar"
+                                href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                            {{/if}}
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 {{#if loginStatus}}
-                                <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiX js-show-sidebar"
-                                    href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
-                                {{else}}
-                                <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiY js-show-sidebar"
-                                    href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
-                                {{/if}}
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    {{#if loginStatus}}
-                                    <div><a class="dropdown-item text-dark" href="/profile">View Profile</a>
-                                    </div>
-                                    <div><a class="dropdown-item text-dark" href="/logout">Logout</a>
-                                    </div>
-                                    {{else}}
-                                    <div><a class="dropdown-item text-dark" href="/login">Login</a>
-                                    </div>
-                                    {{/if}}
+                                <div><a class="dropdown-item text-dark" href="/profile">View Profile</a>
                                 </div>
+                                <div><a class="dropdown-item text-dark" href="/logout">Logout</a>
+                                </div>
+                                {{else}}
+                                <div><a class="dropdown-item text-dark" href="/login">Login</a>
+                                </div>
+                                {{/if}}
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -102,38 +97,55 @@
 
     <!-- Header Mobile -->
     <div class="wrap-header-mobile">
-        <!-- Logo moblie -->
         <div class="logo-mobile">
             <a href="/"><img src="/users/images/icons/logo-01.svg" alt="IMG-LOGO"></a>
+        </div>
+        <!-- Logo moblie -->
+        <div class="flex-c-m h-full p-l-18 p-r-25 ">
+            <div>
+                <a href="/wishlist" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11  js-show-cart "><i
+                        class="zmdi zmdi-favorite-outline"></i></a>
+            </div>
+        </div>
+
+        <div class="flex-c-m h-full p-l-18 p-r-25 ">
+            <div>
+                <a href="/cart" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-cart "> <i
+                        class="zmdi zmdi-shopping-cart"></i></a>
+            </div>
+        </div>
+        <div class="flex-c-m h-full p-l-18 p-r-25 ">
+            <a href="/orders-preview" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-cart">
+                <i class="zmdi zmdi-collection-text"></i>
+            </a>
+        </div>
+        <div class="flex-c-m h-full p-lr-19 ">
+            <div class="dropdown">
+                {{#if loginStatus}}
+                <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiX js-show-sidebar"
+                    href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                {{else}}
+                <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiY js-show-sidebar"
+                    href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
+                {{/if}}
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {{#if loginStatus}}
+                    <div><a class="dropdown-item text-dark" href="/profile">View Profile</a>
+                    </div>
+                    <div><a class="dropdown-item text-dark" href="/logout">Logout</a>
+                    </div>
+                    {{else}}
+                    <div><a class="dropdown-item text-dark" href="/login">Login</a>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
         </div>
 
         <!-- Icon header -->
 
-        <div class="flex-c-m h-full p-lr-19 ">
-            <div>
-                <div class="dropdown">
-                    {{#if loginStatus}}
-                    <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiX js-show-sidebar"
-                        href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
-                    {{else}}
-                    <a class="dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-notiY js-show-sidebar"
-                        href=" /login" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"><i class="zmdi zmdi-account-o"></i></a>
-                    {{/if}}
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        {{#if loginStatus}}
-                        <div><a class="dropdown-item text-dark" href="/logout">Logout</a>
-                        </div>
-                        {{else}}
-                        <div><a class="dropdown-item text-dark" href="/login">Login</a>
-                        </div>
-                        {{/if}}
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
         <!-- Button show menu profile-->
         {{!-- <div class="btn-show-menu-mobile hamburger hamburger--squeeze">

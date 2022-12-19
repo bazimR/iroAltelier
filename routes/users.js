@@ -283,13 +283,24 @@ router.route("/place-order")
                     })
                 }
                 else {
-                    userHelper.paypalGenerate(req.session.total).then((payment) => {
-                        for (let i = 0; i < payment.links.length; i++) {
-                            if (payment.links[i].rel == 'approval_url') {
-                                res.json(payment.links[i])
+                    if(req.session.ctotal){
+                        userHelper.paypalGenerate(req.session.ctotal).then((payment) => {
+                            for (let i = 0; i < payment.links.length; i++) {
+                                if (payment.links[i].rel == 'approval_url') {
+                                    res.json(payment.links[i])
+                                }
                             }
-                        }
-                    })
+                        })
+                    }
+                    else{
+                        userHelper.paypalGenerate(req.session.total).then((payment) => {
+                            for (let i = 0; i < payment.links.length; i++) {
+                                if (payment.links[i].rel == 'approval_url') {
+                                    res.json(payment.links[i])
+                                }
+                            }
+                        })
+                    }
                 }
             })
         }
@@ -408,8 +419,10 @@ router.route("/coupon-apply")
         userHelper.checkCoupon(req.session.user._id, req.body.coupon).then((response) => {
             console.log(response);
             let data = response
+            req.body.coupon = false
             res.json({ status: true, data })
         }).catch((response) => {
+            req.body.coupon = false
             res.json({ status: false })
         })
     })

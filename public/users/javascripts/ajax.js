@@ -106,6 +106,7 @@ function applyCoupon() {
     document.getElementById("coupon").readOnly = false;
     document.getElementById("apply").disabled = false;
     let coupon = document.getElementById("coupon").value
+    
     $.ajax({
         url: '/coupon-apply',
         data: {

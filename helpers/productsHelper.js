@@ -65,7 +65,7 @@ module.exports = {
                         name: proData.name,
                         category: proData.category,
                         description: proData.description,
-                        quantity: proData.quantity,
+                        quantity: parseInt(proData.quantity),
                         price: proData.price,
                         offerprice: proData.offerprice
                     }
@@ -73,13 +73,13 @@ module.exports = {
                     resolve(data)
                 })
             }
-            else{
+            else {
                 db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(proId) }, {
                     $set: {
                         name: proData.name,
                         category: proData.category,
                         description: proData.description,
-                        quantity: proData.quantity,
+                        quantity: parseInt(proData.quantity),
                         price: proData.price,
                         offerprice: proData.offerprice,
                         imageFilename: proData.imageFilename
