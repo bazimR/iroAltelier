@@ -13,7 +13,7 @@ function addToCart(proId) {
 }
 function changeQuantity(cartId, proId, value) {
     let Qty = parseInt(document.getElementById(proId).innerHTML)
-    let stock = parseInt(document.getElementById(proId+"stock").innerHTML)
+    let stock = parseInt(document.getElementById("stock").innerText)
     value = parseInt(value)
     $.ajax({
         url: '/change-quantity',
@@ -22,7 +22,7 @@ function changeQuantity(cartId, proId, value) {
             product: proId,
             value: value,
             Qty: Qty,
-            stock:stock
+            stock: stock
         },
         method: "post",
         success: (response) => {
@@ -32,6 +32,10 @@ function changeQuantity(cartId, proId, value) {
                 $("#mydiv1").load(location.href + " #mydiv1");
                 $("#total").load(location.href + " #total");
                 $("#stock").load(location.href + " #stock");
+            }
+            else if(response.outOfStock)
+            {
+                alert("product out of stock");
             }
             else {
                 document.getElementById(proId).innerHTML = Qty + value
@@ -49,7 +53,7 @@ function deleteProduct(cartId, proId) {
         data: {
             cart: cartId,
             product: proId,
-            Qty :Qty
+            Qty: Qty
         },
         method: "post",
         success: (response) => {
@@ -78,8 +82,8 @@ $("#addAddress").submit((e) => {
     })
 })
 function requestCancel(orderId, userId, proId) {
-    let paymentmethod = document.getElementById("payment1").innerHTML
-    let total = document.getElementById("price1" + proId).innerHTML
+    let paymentmethod = document.getElementById("payment1").innerText
+    let total = document.getElementById("price1" + proId).innerText
     $.ajax({
         url: "/request-cancel",
         data: {
@@ -110,7 +114,7 @@ function applyCoupon() {
         method: "post",
         success: (response) => {
             if (response.status) {
-                let total = document.getElementById("total").innerHTML
+                let total = document.getElementById("total").innerText
                 total = parseInt(total)
                 let min = parseInt(response.data.minamount)
                 let percentage = parseInt(response.data.percentage)
@@ -123,11 +127,11 @@ function applyCoupon() {
                     document.getElementById("apply").disabled = true;
                     var discounted = Math.round((total * percentage) / 100);
                     if (discounted > max) {
-                        document.getElementById("total").innerHTML = total - max
+                        document.getElementById("total").innerText = total - max
                         $.ajax({
                             url: "/assign-coupon",
                             data: {
-                                total: document.getElementById("total").innerHTML,
+                                total: document.getElementById("total").innerText,
                                 id: response.data._id,
                             },
                             method: "post",
@@ -142,11 +146,11 @@ function applyCoupon() {
                         });
                     }
                     else {
-                        document.getElementById("total").innerHTML = total - Math.round((total * percentage) / 100)
+                        document.getElementById("total").innerText = total - Math.round((total * percentage) / 100)
                         $.ajax({
                             url: "/assign-coupon",
                             data: {
-                                total: document.getElementById("total").innerHTML,
+                                total: document.getElementById("total").innerText,
                                 id: response.data._id,
                             },
                             method: "post",

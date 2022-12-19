@@ -1,9 +1,9 @@
 {{>userNavbar}}
 <div class="wrap-table-shopping-cart">
-    <table class="table table-serial">
+    <table class="table css-serial " id="table_id">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th>#</th>
                 <th scope="col">Order Id</th>
                 <th scope="col">Shipping To</th>
                 <th scope="col">Order date</th>
@@ -16,7 +16,7 @@
         <tbody>
             {{#each orders}}
             <tr>
-                <td scope="col"></td>
+                <td></td>
                 <td scope="col">{{this._id}}</td>
                 <td>
                     <div style="width:auto ;height: 60px;

@@ -125,7 +125,7 @@
                             </tr>
                             {{#each cart}}
                             <p id="{{this.product._id}}stock" hidden>{{this.product.quantity}}</p>
-                            <tr class="table_row">
+                            <tr class="table_row" id="reload">
                                 <td class="column-1 text-center">
                                     <div class="how-itemcart1">
                                         <img src="/product-img/{{this.product.imageFilename.[0]}}" alt="IMG">

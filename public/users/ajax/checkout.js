@@ -1,15 +1,12 @@
 
 $("#payment-form").submit((e) => {
-    alert("kk")
     e.preventDefault()
     $.ajax({
         url: '/place-order',
         method: 'post',
         data: $('#payment-form').serialize(),
         success: (response) => {
-            alert("jojo")
             if (response.COD) {
-                alert("jj")
                 location.href = '/thank-you'
             }
             else if (response.RAZORPAY) {
@@ -43,11 +40,15 @@ function razorPayPayment(order) {
             "address": "Razorpay Corporate Office"
         },
         "theme": {
-            "color": "#F8FF8F"
+            "color": "#717fe0"
         }
     };
     var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response) {
+        location.href="/payment-failed"
+    });
     rzp1.open();
+
 }
 function verifyPayment(payment, order) {
     $.ajax({

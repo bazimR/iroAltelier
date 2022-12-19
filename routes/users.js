@@ -32,7 +32,7 @@ function islogged(req, res, next) {
 router.get('/', async (req, res) => {
     let category = await categoryHelper.getCate()
     let banner = await adminHelper.getBanner()
-    productsHelper.getProduct().then((products) => {
+    productsHelper.getProductuser().then((products) => {
         res.render('users/home', { loginStatus: req.session.loggedIn, products, banner, category })
     })
 })
@@ -215,14 +215,18 @@ router.route("/cart")
 router.route("/change-quantity")
     .post((req, res) => {
         cartHelper.changeQuantity(req.body).then((response) => {
-            res.json(response)
-        }).catch((msg) => {
-            console.log(msg);
+            console.log(response);
+            if(response.outOfStock){
+                res.json({outOfStock:true})
+            }
+            else{
+                res.json(response)
+            }
+            
         })
     })
 router.route("/delete-product")
     .post((req, res) => {
-        console.log(req.body);
         cartHelper.deleteProduct(req.body).then((response) => {
             res.json(response)
         })
@@ -356,6 +360,7 @@ router.route('/thank-you')
     .get(inOrder, islogged, (req, res) => {
         userHelper.emptyCart(req.session.user._id).then(() => {
             res.render('users/thankyou', { loginStatus: req.session.loggedIn })
+            req.session.inOrder=false
         })
     })
 router.route("/verify-payment")
@@ -458,5 +463,8 @@ router.route('/accessories')
             res.render('users/access', { loginStatus: req.session.loggedIn, products })
         })
     })
-
+router.route('/payment-failed')
+.get((req,res)=>{
+    res.render('users/payment-failure') 
+})
 module.exports = router;

@@ -13,7 +13,7 @@
         </nav>
     </div>
     <div class="container table-responsive">
-        <table class="table">
+        <table class="table css-serial "  id="table_id">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -31,7 +31,7 @@
             <tbody>
                 {{#each orders}}
                 <tr>
-                    <th scope="row">1</th>
+                    <td scope="row"></td>
                     <td>{{this._id}}</td>
                     <td>{{this.userId}}</td>
                     <td>{{this.deliveryDetails.email}}</td>

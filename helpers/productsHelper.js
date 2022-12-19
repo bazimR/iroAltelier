@@ -18,8 +18,13 @@ module.exports = {
             }
             db.get().collection(collections.PRODUCTS_COLLECTION).insertOne(proObj).then((response) => {
                 resolve(response.insertedId)
-
             })
+        })
+    },
+    getProductuser: () => {
+        return new Promise(async (resolve, reject) => {
+            let products = await db.get().collection(collections.PRODUCTS_COLLECTION).find({ $and: [{ isAvailable: true }, { quantity: { $gte: 0 } }] }).toArray()
+            resolve(products)
         })
     },
     getProduct: () => {
@@ -54,19 +59,35 @@ module.exports = {
     },
     editProduct: (proId, proData) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(proId) }, {
-                $set: {
-                    name: proData.name,
-                    category: proData.category,
-                    description: proData.description,
-                    quantity: proData.quantity,
-                    price: proData.price,
-                    offerprice: proData.offerprice,
-                    imageFilename: proData.imageFilename
-                }
-            }).then((data) => {
-                resolve(data)
-            })
+            if (proData.imageFilename.length == 0) {
+                db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(proId) }, {
+                    $set: {
+                        name: proData.name,
+                        category: proData.category,
+                        description: proData.description,
+                        quantity: proData.quantity,
+                        price: proData.price,
+                        offerprice: proData.offerprice
+                    }
+                }).then((data) => {
+                    resolve(data)
+                })
+            }
+            else{
+                db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(proId) }, {
+                    $set: {
+                        name: proData.name,
+                        category: proData.category,
+                        description: proData.description,
+                        quantity: proData.quantity,
+                        price: proData.price,
+                        offerprice: proData.offerprice,
+                        imageFilename: proData.imageFilename
+                    }
+                }).then((data) => {
+                    resolve(data)
+                })
+            }
         })
     }
 }

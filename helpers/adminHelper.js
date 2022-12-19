@@ -27,7 +27,7 @@ module.exports = {
     },
     getAllOrders: () => {
         return new Promise(async (resolve, reject) => {
-            await db.get().collection(collections.ORDER_COLLECTION).find().sort({ time: -1 }).toArray().then((orders) => {
+            await db.get().collection(collections.ORDER_COLLECTION).find({status:"Placed"}).sort({ time: -1 }).toArray().then((orders) => {
                 // console.log(orders);
                 resolve(orders)
             })

@@ -100,45 +100,53 @@ module.exports = {
         let value = parseInt(details.value)
         let Qty = parseInt(details.Qty)
         let stock = parseInt(details.stock)
-        return new Promise((resolve, reject) => {
-            if (Qty == 1 && value == -1) {
-                db.get().collection(collections.CARTS_COLLECTION).updateOne({ _id: objectId(details.cart), "products.item": objectId(details.product) }, {
-                    $pull: { "products": { "item": objectId(details.product) } }
-                }).then((response) => {
-                    db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(details.product) }, {
-                        $inc: {
-                            quantity: 1
-                        }
-                    })
-                    resolve({ removeProduct: true })
-                })
+        return new Promise(async (resolve, reject) => {
+            console.log(details);
+            if (stock <= 0 && value == 1) {
+                console.warn("here");
+                resolve({ outOfStock: true })
             }
             else {
-                if (stock != 0 && value == 1) {
-                    db.get().collection(collections.CARTS_COLLECTION).updateOne({ _id: objectId(details.cart), "products.item": objectId(details.product) }, {
-                        $inc: { "products.$.Qty": value }
-                    }).then(() => {
-                        db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(details.product) }, {
-                            $inc: {
-                                quantity: -1
-                            }
-                        })
-                        resolve(true)
-                    })
-                }
-                else  {
-                    db.get().collection(collections.CARTS_COLLECTION).updateOne({ _id: objectId(details.cart), "products.item": objectId(details.product) }, {
-                        $inc: { "products.$.Qty": value }
-                    }).then(() => {
-                        db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(details.product) }, {
+                if (Qty == 1 && value == -1) {
+                    await db.get().collection(collections.CARTS_COLLECTION).updateOne({ _id: objectId(details.cart), "products.item": objectId(details.product) }, {
+                        $pull: { "products": { "item": objectId(details.product) } }
+                    }).then(async (response) => {
+                        await db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(details.product) }, {
                             $inc: {
                                 quantity: 1
                             }
                         })
-                        resolve(true)
+                        resolve({ removeProduct: true })
                     })
                 }
+                else {
+                    if (stock != 0 && value == 1) {
+                        await db.get().collection(collections.CARTS_COLLECTION).updateOne({ _id: objectId(details.cart), "products.item": objectId(details.product) }, {
+                            $inc: { "products.$.Qty": value }
+                        }).then(async () => {
+                            await db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(details.product) }, {
+                                $inc: {
+                                    quantity: -1
+                                }
+                            })
+                            resolve({change:true})
+                        })
+                    }
+                    else {
+                        await db.get().collection(collections.CARTS_COLLECTION).updateOne({ _id: objectId(details.cart), "products.item": objectId(details.product) }, {
+                            $inc: { "products.$.Qty": value }
+                        }).then(async () => {
+                            await db.get().collection(collections.PRODUCTS_COLLECTION).updateOne({ _id: objectId(details.product) }, {
+                                $inc: {
+                                    quantity: 1
+                                }
+                            })
+                            resolve({change:true})
+                        })
+                    }
+                }
             }
+
         })
     },
     deleteProduct: (details) => {

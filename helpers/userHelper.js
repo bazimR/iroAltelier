@@ -13,12 +13,11 @@ var instance = new Razorpay({
     key_secret: process.env.key_secret,
 });
 var paypal = require('paypal-rest-sdk');
-const { log } = require("console")
-const { resolve } = require("path")
+
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id': process.env.client_id,
-    'client_secret': process.env.client_secret
+    'client_id': process.env.paypal_client_id ,
+    'client_secret': process.env.paypal_client_secret
 });
 module.exports = {
     doSignup: (userData) => {
@@ -333,7 +332,10 @@ module.exports = {
             let orders = await db.get().collection(collections.ORDER_COLLECTION).aggregate([
                 {
                     $match: {
-                        userId: objectId(userId)
+                        $and:[
+                        {userId: objectId(userId)},
+                        {status:"Placed"}
+                        ]
                     }
                 },
                 {

@@ -13,7 +13,7 @@
         </nav>
     </div>
     <div class="container table-responsive">
-        <table class="table">
+        <table class="table css-serial "  id="table_id">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -33,7 +33,7 @@
             <tbody>
                 {{#each orderData}}
                 <tr>
-                    <td>#</td>
+                    <td></td>
                     <td>{{this.products.name}}</td>
                     <td><img style="width: 56px;height: auto;" src="/product-img/{{this.products.imageFilename.[0]}}" alt=""></td>
                     <td>{{this.paymentMethod}}</td>

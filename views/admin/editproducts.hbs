@@ -99,6 +99,20 @@
                 <input name="offerprice" type="text" id="form5Example2" class="form-control" placeholder="offerprice"
                     value="{{products.offerprice}}" />
             </div>
+            <div class="form-outline mb-4">
+                <div class="row">
+                    <div class="col-lg-4 float-left">
+                        <img style="width: 50%;" src="/product-img/{{products.imageFilename.[0]}}" alt="">
+                    </div>
+                    <div class="col-lg-4 float-left">
+                        <img style="width: 50%;" src="/product-img/{{products.imageFilename.[1]}}" alt="">
+                    </div>
+                    <div class="col-lg-4 float-left">
+                        <img style="width: 50%;" src="/product-img/{{products.imageFilename.[2]}}" alt="">
+                    </div>
+                    
+                </div>
+            </div>
             <div class=" mb-4">
                 <label for="id_image">Image</label><br>
                 <input class="form-control" data-toggle="modal" data-target="#exampleModal" type="file" id="id_image"
@@ -189,7 +203,7 @@
         function cropper(img_data, image, index, crop_btn, imagebox) {
 
             const cropper = new Cropper(image, {
-                aspectRatio:1/1,
+                aspectRatio: 1 / 1,
                 autoCropArea: 1,
                 viewMode: 1,
                 scalable: false,
@@ -197,9 +211,9 @@
                 movable: false,
                 minCropBoxWidth: 50,
                 minCropBoxHeight: 50,
-                maxCropBoxwidth:100,
+                maxCropBoxwidth: 100,
                 maxCropBoxHeight: 100
-                
+
             })
 
             // When crop button is clicked this event will get triggered
